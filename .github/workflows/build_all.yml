@@ -382,10 +382,9 @@ jobs:
             path: sdrpp_all/
 
     update_nightly_release:
-        if: false
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && false}}
         needs: [create_full_archive]
         runs-on: ubuntu-latest
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
 
         steps:
         - name: Download All Builds
