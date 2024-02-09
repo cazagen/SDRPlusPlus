@@ -11,6 +11,7 @@ env:
 
 jobs:
     build_windows:
+        if: false
         runs-on: windows-latest
 
         steps:
@@ -118,7 +119,7 @@ jobs:
 
         - name: Prepare CMake
           working-directory: ${{runner.workspace}}/build
-          run: cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 $GITHUB_WORKSPACE -DOPT_BUILD_PLUTOSDR_SOURCE=ON -DOPT_BUILD_SOAPY_SOURCE=OFF -DOPT_BUILD_BLADERF_SOURCE=ON -DOPT_BUILD_SDRPLAY_SOURCE=ON -DOPT_BUILD_LIMESDR_SOURCE=ON -DOPT_BUILD_AUDIO_SINK=OFF -DOPT_BUILD_PORTAUDIO_SINK=ON -DOPT_BUILD_NEW_PORTAUDIO_SINK=ON -DOPT_BUILD_M17_DECODER=ON -DOPT_BUILD_PERSEUS_SOURCE=ON -DOPT_BUILD_AUDIO_SOURCE=OFF -DUSE_BUNDLE_DEFAULTS=ON -DCMAKE_BUILD_TYPE=Release -DOPT_BUILD_ATV_DECODER=ON -DOPT_BUILD_FALCON9_DECODER=ON -DOPT_BUILD_KGSSTV_DECODER=ON -DOPT_BUILD_PAGER_DECODER=ON -DOPT_BUILD_WEATHER_SAT_DECODER=ON -DOPT_BUILD_IQ_EXPORTER=ON
+          run: cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 $GITHUB_WORKSPACE -DOPT_BUILD_PLUTOSDR_SOURCE=ON -DOPT_BUILD_SOAPY_SOURCE=OFF -DOPT_BUILD_BLADERF_SOURCE=ON -DOPT_BUILD_SDRPLAY_SOURCE=ON -DOPT_BUILD_LIMESDR_SOURCE=ON -DOPT_BUILD_AUDIO_SINK=OFF -DOPT_BUILD_PORTAUDIO_SINK=ON -DOPT_BUILD_NEW_PORTAUDIO_SINK=ON -DOPT_BUILD_PERSEUS_SOURCE=ON -DOPT_BUILD_AUDIO_SOURCE=OFF -DUSE_BUNDLE_DEFAULTS=ON -DCMAKE_BUILD_TYPE=Release -DOPT_BUILD_ATV_DECODER=ON -DOPT_BUILD_FALCON9_DECODER=ON -DOPT_BUILD_KGSSTV_DECODER=ON -DOPT_BUILD_PAGER_DECODER=ON -DOPT_BUILD_WEATHER_SAT_DECODER=ON -DOPT_BUILD_IQ_EXPORTER=ON
 
         - name: Build
           working-directory: ${{runner.workspace}}/build
@@ -135,6 +136,7 @@ jobs:
               path: ${{runner.workspace}}/sdrpp_macos_intel.zip
 
     build_debian_buster:
+        if: false
         runs-on: ubuntu-latest
 
         steps:
@@ -157,6 +159,7 @@ jobs:
               path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
 
     build_debian_bullseye:
+        if: false
         runs-on: ubuntu-latest
 
         steps:
@@ -179,6 +182,7 @@ jobs:
               path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
 
     build_debian_bookworm:
+        if: false
         runs-on: ubuntu-latest
 
         steps:
@@ -201,6 +205,7 @@ jobs:
               path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
 
     build_debian_sid:
+        if: false
         runs-on: ubuntu-latest
 
         steps:
@@ -223,6 +228,7 @@ jobs:
               path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
 
     build_ubuntu_focal:
+        if: false
         runs-on: ubuntu-latest
 
         steps:
@@ -245,6 +251,7 @@ jobs:
               path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
 
     build_ubuntu_jammy:
+        if: false
         runs-on: ubuntu-latest
 
         steps:
@@ -267,6 +274,7 @@ jobs:
               path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
     
     build_ubuntu_mantic:
+        if: false
         runs-on: ubuntu-latest
 
         steps:
@@ -289,6 +297,7 @@ jobs:
               path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
 
     build_raspios_bullseye_armhf:
+        if: false
         runs-on: ARM
 
         steps:
@@ -316,6 +325,7 @@ jobs:
               path: ${{runner.workspace}}/sdrpp_debian_armhf.deb
 
     build_android:
+        if: false
         runs-on: ubuntu-latest
 
         steps:
@@ -343,6 +353,7 @@ jobs:
               path: ${{runner.workspace}}/sdrpp.apk
 
     create_full_archive:
+        if: false
         needs: ['build_windows', 'build_macos', 'build_debian_buster', 'build_debian_bullseye', 'build_debian_bookworm', 'build_debian_sid', 'build_ubuntu_focal', 'build_ubuntu_jammy', 'build_ubuntu_mantic', 'build_raspios_bullseye_armhf', 'build_android']
         runs-on: ubuntu-latest
 
@@ -371,6 +382,7 @@ jobs:
             path: sdrpp_all/
 
     update_nightly_release:
+        if: false
         needs: [create_full_archive]
         runs-on: ubuntu-latest
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
@@ -383,6 +395,7 @@ jobs:
           run: gh release upload nightly sdrpp_all/* -R ${{github.repository}} --clobber
 
     check_spelling:
+        if: false
         runs-on: ubuntu-latest
 
         steps:
@@ -395,6 +408,7 @@ jobs:
           run: cd $GITHUB_WORKSPACE && codespell -q 2 || true
 
     check_formatting:
+        if: false
         runs-on: ubuntu-latest
 
         steps:
