@@ -5,7 +5,7 @@
 #include <signal_path/signal_path.h>
 #include <module.h>
 #include <gui/gui.h>
-#include <dsp/pll.h>
+#include <dsp/loop/pll.h>
 #include <dsp/stream.h>
 #include <dsp/demodulator.h>
 #include <dsp/window.h>
