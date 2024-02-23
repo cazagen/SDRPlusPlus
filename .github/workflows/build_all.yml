@@ -11,7 +11,7 @@ env:
 
 jobs:
     build_windows:
-        if: false
+        if: true
         runs-on: windows-latest
 
         steps:
@@ -65,7 +65,7 @@ jobs:
 
         - name: Prepare CMake
           working-directory: ${{runner.workspace}}/build
-          run: cmake "$Env:GITHUB_WORKSPACE" "-DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake" -DOPT_BUILD_BLADERF_SOURCE=ON -DOPT_BUILD_LIMESDR_SOURCE=ON -DOPT_BUILD_PERSEUS_SOURCE=ON -DOPT_BUILD_SDRPLAY_SOURCE=ON -DOPT_BUILD_NEW_PORTAUDIO_SINK=ON -DOPT_BUILD_M17_DECODER=ON
+          run: cmake "$Env:GITHUB_WORKSPACE" "-DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake" -DOPT_BUILD_BLADERF_SOURCE=ON -DOPT_BUILD_LIMESDR_SOURCE=ON -DOPT_BUILD_PERSEUS_SOURCE=ON -DOPT_BUILD_SDRPLAY_SOURCE=ON -DOPT_BUILD_NEW_PORTAUDIO_SINK=ON -DOPT_BUILD_M17_DECODER=ON -DOPT_BUILD_PAGER_DECODER=ON -DOPT_BUILD_IQ_EXPORTER=ON
 
         - name: Build
           working-directory: ${{runner.workspace}}/build
